@@ -1,0 +1,9 @@
+{
+  "name": "testFunction",
+  "version": "1.0.0",
+  "description": "lambda test function",
+  "main": "app.js",
+  "repository": "",
+  "author": "SAM CLI",
+  "license": "MIT"
+}
