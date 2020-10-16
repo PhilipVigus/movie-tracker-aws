@@ -7,5 +7,6 @@ describe('Tests index', function () {
         const response = JSON.parse(result.body);
         expect(result.statusCode).toEqual(200);
         expect(response.message).toEqual("hello world");
+        expect(response.env).toEqual("test");
     });
 });

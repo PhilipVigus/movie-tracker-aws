@@ -5,5 +5,8 @@
   "main": "testFunction.js",
   "repository": "",
   "author": "SAM CLI",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
