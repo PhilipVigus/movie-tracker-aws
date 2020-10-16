@@ -24,3 +24,5 @@ yarn-error.log*
 
 # aws
 /.aws-sam
+
+.env
