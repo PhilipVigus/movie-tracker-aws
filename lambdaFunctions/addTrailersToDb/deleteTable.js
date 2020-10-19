@@ -15,14 +15,4 @@ const deleteTable = (params) => {
       .catch(console.error);
 };
 
-const p = {
-  TableName: "Movies"
-};
-
-const runDeleteTable = async () => {
-  await deleteTable(p);
-}
-
-runDeleteTable(p);
-
-module.exports = { deleteTable }
+module.exports = deleteTable;

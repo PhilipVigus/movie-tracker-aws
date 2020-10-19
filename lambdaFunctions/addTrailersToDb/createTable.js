@@ -15,20 +15,4 @@ const createTable = (params) => {
     .catch(console.error);
 };
 
-const p = {
-  TableName: "Movies",
-  KeySchema: [{ AttributeName: "title", KeyType: "HASH" }],
-  AttributeDefinitions: [{ AttributeName: "title", AttributeType: "S" }],
-  ProvisionedThroughput: {
-    ReadCapacityUnits: 10,
-    WriteCapacityUnits: 10
-  }
-};
-
-const runCreateTable = async () => {
-  await createTable(p);
-};
-
-runCreateTable();
-
-module.exports = { createTable }
+module.exports = createTable;
