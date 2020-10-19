@@ -5,15 +5,15 @@ const rssTestData = require("./fixtures/rssTestData");
 
 Axios.defaults.adapter = require("axios/lib/adapters/http");
 
-describe("getRssData", () => {
+describe("getRssFeed", () => {
   it("returns the RSS feed", async () => {
     const axiosMock = new MockAdapter(Axios);
     axiosMock
       .onGet("https://www.traileraddict.com/rss")
       .reply(200, rssTestData);
 
-    const rssData = await getRssFeed();
-    expect(rssData.data).toEqual(rssTestData);
+    const rssFeedData = await getRssFeed();
+    expect(rssFeedData.data).toEqual(rssTestData);
 
     axiosMock.restore();
   });
