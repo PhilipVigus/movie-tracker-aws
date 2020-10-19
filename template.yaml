@@ -23,6 +23,18 @@ Resources:
           Properties:
             Path: /test
             Method: get
+  AddTrailersToDb:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambdaFunctions/addTrailersToDb/
+      Handler: addTrailersToDb.lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        Test:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /addTrailersToDb
+            Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -37,3 +49,12 @@ Outputs:
   TestFunctionIamRole:
     Description: "Implicit IAM Role created for Test function"
     Value: !GetAtt TestFunctionRole.Arn
+  AddTrailersToDbApi:
+    Description: "API Gateway endpoint URL for Prod stage for addTrailersToDb function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/addTrailersToDb/"
+  AddTrailersToDb:
+    Description: "AddTrailersToDb Lambda Function ARN"
+    Value: !GetAtt AddTrailersToDb.Arn
+  AddTrailersToDbIamRole:
+    Description: "Implicit IAM Role created for AddTrailersToDb function"
+    Value: !GetAtt AddTrailersToDb.Arn

@@ -1,0 +1,14 @@
+{
+  "name": "testFunction",
+  "version": "1.0.0",
+  "description": "lambda test function",
+  "main": "testFunction.js",
+  "repository": "",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "dynamodb-local": "^0.0.31"
+  },
+  "devDependencies": {}
+}
