@@ -1,19 +1,19 @@
-var AWS = require('aws-sdk');
-var config = {
+const AWS = require('aws-sdk');
+const config = {
   "apiVersion": "2012-08-10",
   "accessKeyId": "abcde",
   "secretAccessKey": "abcde",
   "region":"us-west-2",
   "endpoint": "http://localhost:8000"
 }
-var dynamodb = new AWS.DynamoDB(config);
+const dynamodb = new AWS.DynamoDB(config);
 
-function createTable(params) {
+const createTable = (params) => {
   dynamodb.createTable(params)
     .promise()
     .then(data => console.log("Created table", data))
     .catch(console.error);
-}
+};
 
 const p = {
   TableName: "Movies",
@@ -25,9 +25,10 @@ const p = {
   }
 };
 
-async function runCreateTable() {
+const runCreateTable = async () => {
   await createTable(p);
-}
+};
+
 runCreateTable();
 
 module.exports = { createTable }
