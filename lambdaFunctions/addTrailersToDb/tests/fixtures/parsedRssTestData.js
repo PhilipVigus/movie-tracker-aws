@@ -14,9 +14,9 @@ const parsedRssTestData = [
     ]
   },
   {
-    title: "Antebellum: TV Spot - Don't Give Away the Twist",
     id:
       "http://www.traileraddict.com/antebellum-2020/tv-spot-dont-give-away-the-twist",
+    title: "Antebellum: TV Spot - Don't Give Away the Twist",
     date: "Wed, 23 Sep 2020 10:47:50 -0700",
     link:
       "http://www.traileraddict.com/antebellum-2020/tv-spot-dont-give-away-the-twist",
