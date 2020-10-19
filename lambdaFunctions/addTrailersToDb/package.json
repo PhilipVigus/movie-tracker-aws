@@ -7,8 +7,11 @@
   "author": "SAM CLI",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "dynamodb-local": "^0.0.31"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "axios-mock-adapter": "^1.18.2"
+  }
 }
