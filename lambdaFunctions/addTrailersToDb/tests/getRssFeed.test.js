@@ -2,7 +2,6 @@ const Axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
 const getRssFeed = require("../getRssFeed");
 const rssTestData = require("./fixtures/rssTestData");
-
 Axios.defaults.adapter = require("axios/lib/adapters/http");
 
 describe("getRssFeed", () => {
