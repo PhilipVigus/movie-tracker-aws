@@ -9,13 +9,10 @@ var config = {
 var dynamodb = new AWS.DynamoDB(config);
 
 function createTable(params) {
-    dynamodb.createTable(params, function(err, data) {
-    if (err) {
-      console.error("Unable to create table", err);
-    } else {
-      console.log("Created table", data);
-    }
-  });
+  dynamodb.createTable(params)
+    .promise()
+    .then(data => console.log("Created table", data))
+    .catch(console.error);
 }
 
 const p = {
@@ -28,6 +25,9 @@ const p = {
   }
 };
 
-createTable(p);
+async function runCreateTable() {
+  await createTable(p);
+}
+runCreateTable();
 
 module.exports = { createTable }

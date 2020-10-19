@@ -9,19 +9,20 @@ var config = {
 var dynamodb = new AWS.DynamoDB(config);
 
 function deleteTable(params) {
-    dynamodb.deleteTable(params, function(err, data) {
-    if (err) {
-      console.error("Unable to delete table", err);
-    } else {
-      console.log("Deleted table", data);
-    }
-  });
+    dynamodb.deleteTable(params)
+      .promise()
+      .then(data => console.log("Deleted table", data))
+      .catch(console.error);
 }
 
 const p = {
   TableName: "Movies"
 };
 
-deleteTable(p);
+async function runDeleteTable() {
+  await deleteTable(p);
+}
+
+runDeleteTable(p);
 
 module.exports = { deleteTable }
