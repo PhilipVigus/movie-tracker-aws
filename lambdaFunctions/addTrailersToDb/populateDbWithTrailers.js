@@ -12,9 +12,8 @@ const populateDbWithTrailers = async (document, trailers, tableName) => {
           tags: trailer.tags
         }
       }
-    ).promise();  }
-
-
+    ).promise();  
+  }
 }
 
 module.exports = populateDbWithTrailers;
