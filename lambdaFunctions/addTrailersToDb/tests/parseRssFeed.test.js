@@ -1,9 +1,9 @@
-const parseRssData = require("../parseRssFeed");
+const parseRssFeed = require("../parseRssFeed");
 const rssTestData = require("./fixtures/rssTestData");
 const parsedRssTestData = require("./fixtures/parsedRssTestData");
 
-describe("parseRssData", () => {
+describe("parseRssFeed", () => {
   it("parses the RssData", () => {
-    expect(parseRssData(rssTestData)).toEqual(parsedRssTestData);
+    expect(parseRssFeed(rssTestData)).toEqual(parsedRssTestData);
   });
 });
