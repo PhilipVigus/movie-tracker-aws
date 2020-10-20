@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:lambda": "jest ./lambdaFunctions"
+    "test:lambda": "jest --clearCache && jest -i ./lambdaFunctions --watchAll"
   },
   "eslintConfig": {
     "extends": "react-app"
