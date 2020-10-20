@@ -12,7 +12,7 @@ describe("getRssFeed", () => {
       .reply(200, rssTestData);
 
     const rssFeedData = await getRssFeed();
-    expect(rssFeedData.data).toEqual(rssTestData);
+    expect(rssFeedData).toEqual(rssTestData);
 
     axiosMock.restore();
   });
