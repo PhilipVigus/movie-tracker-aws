@@ -11,6 +11,7 @@ describe("populateDbWithTrailers", () => {
     const db = new AWS.DynamoDB(dbConfig);
     const document = new AWS.DynamoDB.DocumentClient(dbConfig);
 
+    trailerTableParams.TableName = "testTable_populate"
     await createTable(db, trailerTableParams);
     await populateDbWithTrailers(document, parsedRssTestData, trailerTableParams.TableName);
     const tableData = await db.describeTable({ TableName: trailerTableParams.TableName }).promise();

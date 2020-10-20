@@ -8,6 +8,7 @@ describe("createTable", () => {
   it("creates a table", async () => {
     const db = new AWS.DynamoDB(dbConfig);
 
+    testTableParams.TableName = "testTable_create"
     const result = await createTable(db, testTableParams);
     expect(result).toBeDefined();
 

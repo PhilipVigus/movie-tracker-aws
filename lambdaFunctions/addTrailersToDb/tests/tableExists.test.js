@@ -8,7 +8,7 @@ const testTableParams = require("./fixtures/testTableParams");
 describe("tableExists", () => {
   it("returns true if the table exists", async () => {
     const db = new AWS.DynamoDB(dbConfig);
-
+    testTableParams.TableName = "testTable_exists";
     await createTable(db, testTableParams);
     expect(await tableExists(db, testTableParams.TableName)).toEqual(true);
     await deleteTable(db, testTableParams.TableName);
@@ -16,7 +16,7 @@ describe("tableExists", () => {
 
   it("returns false if the table doesn't exist", async () => {
     const db = new AWS.DynamoDB(dbConfig);
-
+    testTableParams.TableName = "testTable_doesnt_exist";
     expect(await tableExists(db, testTableParams.TableName)).toEqual(false);
   });
 });
