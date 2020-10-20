@@ -1,6 +1,9 @@
-require('dotenv').config()
-
-let response;
+require('dotenv').config();
+const AWS = require('aws-sdk');
+const dbConfig = require("./tests/fixtures/dbConfig");
+const getRssFeed = require("./getRssFeed");
+const parseRssFeed = require("./parseRssFeed");
+const populateDbWithTrailers = require("./populateDbWithTrailers");
 
 /**
  *
@@ -15,17 +18,28 @@ let response;
  * 
  */
 exports.lambdaHandler = async (event, context) => {
+    let response;
+
     try {
+        const rssFeedData = await getRssFeed();
+        const parsedTrailers = parseRssFeed(rssFeedData);
+
+        const document = new AWS.DynamoDB.DocumentClient(dbConfig);
+        await populateDbWithTrailers(document, parsedTrailers, "movieTracker__dev__trailers");
+
         response = {
             'statusCode': 200,
             'body': JSON.stringify({
-                message: 'hello world',
-                env: process.env.NODE_ENV,
+                message: 'Trailers added to database',
             })
         }
     } catch (err) {
-        console.log(err);
-        return err;
+        response = {
+            'statusCode': 420,
+            'body': JSON.stringify({
+                message: 'Error adding trailers to database',
+            })
+        }
     }
 
     return response
