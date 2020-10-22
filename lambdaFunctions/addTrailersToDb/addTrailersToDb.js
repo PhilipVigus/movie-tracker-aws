@@ -25,7 +25,15 @@ exports.lambdaHandler = async (event, context) => {
         const parsedTrailers = parseRssFeed(rssFeedData);
 
         const document = new AWS.DynamoDB.DocumentClient(dbConfig);
-        await populateDbWithTrailers(document, parsedTrailers, "movieTracker__dev__trailers");
+
+        let tableName;
+        if(process.env.NODE_ENV === "test") {
+            tableName = "movieTracker__test__trailers";
+        } else {
+            tableName = "movieTracker__dev__trailers";
+        }
+
+        await populateDbWithTrailers(document, parsedTrailers, tableName);
 
         response = {
             'statusCode': 200,
