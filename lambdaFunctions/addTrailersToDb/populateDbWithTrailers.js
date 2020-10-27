@@ -2,7 +2,9 @@ const trailerExists = require("./trailerExists");
 
 const populateDbWithTrailers = async (document, trailers, tableName) => {
   for (let trailer of trailers) {
+    console.log("Before exists call");
     const isTrailerAlreadyInDb = await trailerExists(document, tableName, trailer.id);
+    console.log("After exists call");
     if (!isTrailerAlreadyInDb) {
       await document.put(
         { 
@@ -17,6 +19,9 @@ const populateDbWithTrailers = async (document, trailers, tableName) => {
           }
         }
       ).promise();  
+      console.log(`${trailer.id} - added to database`);
+    } else {
+      console.log(`${trailer.id} - already added`);
     }
   }
 }

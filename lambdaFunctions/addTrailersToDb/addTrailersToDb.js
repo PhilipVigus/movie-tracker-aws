@@ -23,13 +23,19 @@ exports.lambdaHandler = async (event, context) => {
     try {
         const rssFeedData = await getRssFeed();
         const parsedTrailers = parseRssFeed(rssFeedData);
-
+        console.log(parsedTrailers.length);
+        console.log(dbConfig);
         const document = new AWS.DynamoDB.DocumentClient(dbConfig);
-
+        const db = new AWS.DynamoDB(dbConfig);
+        const tables = await db.listTables().promise();
+        console.log("tables");
+        console.log(tables);
         let tableName;
         if(process.env.NODE_ENV === "test") {
+            console.log("testing");
             tableName = "movieTracker__test__trailers";
         } else {
+            console.log("devving");
             tableName = "movieTracker__dev__trailers";
         }
 

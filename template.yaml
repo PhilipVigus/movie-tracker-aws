@@ -11,6 +11,15 @@ Globals:
     Timeout: 3
 
 Resources:
+  NamesTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: movieTracker__dev__trailers
+      PrimaryKey:
+        Name: id
+        Type: String
+      SSESpecification:
+        SSEEnabled: true
   TestFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -29,6 +38,9 @@ Resources:
       CodeUri: lambdaFunctions/addTrailersToDb/
       Handler: addTrailersToDb.lambdaHandler
       Runtime: nodejs12.x
+      Policies:
+        - DynamoDBCrudPolicy:
+          TableName: !Ref movieTracker__dev__trailers
       Events:
         Test:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
